@@ -1,0 +1,17 @@
+<h2>Edit Todo</h2>
+
+<%= form_for @todo do|f|%>
+
+<div>
+	Todo topic
+	<%=f.text_field :topic %> 
+</div>
+
+<div>
+	finished?
+	<%=f.check_box :done %> yes
+</div>
+
+<%=f.submit %>
+
+<% end %>

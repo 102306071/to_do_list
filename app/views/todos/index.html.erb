@@ -1,0 +1,40 @@
+<h2>To Do List</h2>
+
+<%= link_to 'New Todo ', new_todo_path %>
+<%= link_to "show all", todos_path %>
+<br>
+Search
+<%= form_tag todos_path,method:"get" do%>
+	<%=hidden_field_tag :done,true%>
+	<%=submit_tag "Finished"%>	
+<%end%>
+
+<%= form_tag todos_path,method:"get" do%>
+	<%=hidden_field_tag :donnotdone,false%>
+	<%=submit_tag "Not Finished"%>
+<%end%>
+
+List~~
+<div id="list">
+<% @todos.each do |todo| %>
+
+	<%= todo.topic %> 
+	<% if todo.done == false %>
+         	尚未完成 x
+         	<%else %>
+          	完成 v
+          	<%end%>
+
+	<% if todo.done == false %>
+       		 <%= button_to "finished", finish_todo_path(todo), method: :post %>
+        	<%else%>
+        		<%= button_to "Not finished", finish_todo_path(todo), method: :post %>
+        	<%end%>
+
+          	<%= link_to  "delete" , todo_path(todo) ,method:"delete"%>
+          	<%= link_to "edit", edit_todo_path(todo) %>
+          	<br>
+<% end %>
+
+
+</div>
