@@ -1,19 +1,32 @@
-<h2>To Do List</h2>
-
+<br>
 <div id="newTodo"><%= link_to 'New Todo ', new_todo_path %></div>&nbsp;
 <br>
-Search
-<%= form_tag todos_path,method:"get" do%>
-	<%=hidden_field_tag :done,true%>
-	<%=submit_tag "Finished"%>	
-<%end%>
+Search for
 
-<%= form_tag todos_path,method:"get" do%>
-	<%=hidden_field_tag :donnotdone,false%>
-	<%=submit_tag "Not Finished"%>
-<%end%>
+<div class="btn-group">
+                    
+                    <a class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Search for    
+                   <span class="caret"></span>
+                   </a>
+                    <ul class="dropdown-menu">
+                      <li><%= form_tag todos_path,method:"get" do%>
+                              <%=hidden_field_tag :done,true%>
+                              <%=submit_tag "Finished" , :class => "btn btn-link"%>
+                              <%end%><i class="icon-pencil"></i>
+                      </li>
 
-List~~
+                      <li><%= form_tag todos_path,method:"get" do%>
+                              <%=hidden_field_tag :donnotdone,false%>
+                              <%=submit_tag "Not Finished" , :class => "btn btn-link"%>
+                              <%end%><i class="icon-pencil"></i>
+                      </li>
+                    </ul>
+              </div>
+
+<br>
+
+<h3>List~~</h3>
 <div id="list">
 <% @todos.each do |todo| %>
 
@@ -24,14 +37,25 @@ List~~
           	(完成 )
           	<%end%>
 
-	<% if todo.done == false %>
-       		 <%= button_to "finished", finish_todo_path(todo), method: :post %>
-        	<%else%>
-        		<%= button_to "Not finished", finish_todo_path(todo), method: :post %>
-        	<%end%>
-
-          	<%= link_to  "delete" , todo_path(todo) ,method:"delete"%>
-          	<%= link_to "edit", edit_todo_path(todo) %>
+            <div class="btn-group">
+                    
+                    <a class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    Action    
+                   <span class="caret"></span>
+                   </a>
+                    <ul class="dropdown-menu">
+                      <li><%= link_to  "delete" , todo_path(todo) ,method:"delete"%><i class="icon-pencil"></i></li>
+                      <li><%= link_to "edit", edit_todo_path(todo) %><i class="icon-trash"></i></li>
+                      <li class="divider"></li>
+                      <li><% if todo.done == false %>
+                             <%= link_to "finished", finish_todo_path(todo), method: :post %>
+                            <%else%>
+                              <%= link_to "Not finished", finish_todo_path(todo), method: :post %>
+                            <%end%>
+                    </li>              
+                    </ul>
+              </div>
+          	
           	<br>
 <% end %>
 
