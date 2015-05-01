@@ -1,7 +1,6 @@
 <h2>To Do List</h2>
 
-<%= link_to 'New Todo ', new_todo_path %>
-<%= link_to "show all", todos_path %>
+<div id="newTodo"><%= link_to 'New Todo ', new_todo_path %></div>&nbsp;
 <br>
 Search
 <%= form_tag todos_path,method:"get" do%>
@@ -20,9 +19,9 @@ List~~
 
 	<%= todo.topic %> 
 	<% if todo.done == false %>
-         	尚未完成 x
+         	(尚未完成 )
          	<%else %>
-          	完成 v
+          	(完成 )
           	<%end%>
 
 	<% if todo.done == false %>
@@ -36,5 +35,6 @@ List~~
           	<br>
 <% end %>
 
+<%= link_to "show all", todos_path %>
 
 </div>
